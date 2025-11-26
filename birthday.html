@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday My Love ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2d033b;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 24px;
+      border-radius: 20px;
+      width: 95%;
+      max-width: 480px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      margin: 8px;
+      min-width: 110px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #ff758c;
+      border: 1px solid #ffb6c1;
+    }
+
+    button:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+      opacity: 0.9;
+    }
+
+    .nav-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cake-img {
+      max-width: 260px;
+      width: 100%;
+      border-radius: 20px;
+      margin: 16px auto;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .photos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+@media (min-width: 700px) {
+  .photos-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.photos-grid img {
+  width: 100%;
+  height: auto;          /* keeps original ratio */
+  border-radius: 14px;
+  object-fit: contain;   /* shows full image */
+  background: #fff;
+  padding: 4px;          /* optional for neat border */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+
+
+    .video-wrapper {
+      margin-top: 16px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+    }
+
+    /* Candle section */
+    .candle-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cake base */
+.cake-base {
+  width: 220px;
+  height: 110px;
+  background: #ffb6c1;
+  border-radius: 20px 20px 10px 10px;
+  position: relative;              /* VERY IMPORTANT */
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.cake-base::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fff0f5,
+    #fff0f5 8px,
+    #ff7eb3 8px,
+    #ff7eb3 16px
+  );
+  border-radius: 18px 18px 0 0;
+}
+
+/* Candle is now attached to the TOP of the cake */
+.candle {
+  width: 16px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  border-radius: 8px;
+  position: absolute;
+  bottom: 100%;                    /* sits exactly on top */
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+/* Flame is attached to the TOP of the candle */
+.flame {
+  width: 26px;
+  height: 38px;
+  background: radial-gradient(circle at 30% 20%, #fffacd, #ffcc00, #ff7b00);
+  border-radius: 50% 50% 45% 45%;
+  position: absolute;
+  bottom: 100%;                    /* sits on top of candle */
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px rgba(255, 140, 0, 0.8);
+  cursor: pointer;
+  animation: flicker 0.25s infinite alternate;
+}
+
+.flame.off {
+  display: none;
+}
+
+
+    @keyframes flicker {
+      from {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 10px rgba(255, 140, 0, 0.75);
+      }
+      to {
+        transform: translateX(-50%) scale(1.07);
+        box-shadow: 0 0 18px rgba(255, 140, 0, 0.95);
+      }
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: 600;
+      color: #c9184a;
+    }
+
+    .paragraph-box {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: #fff0f5;
+      text-align: left;
+      line-height: 1.5;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .badge-step {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #ffe5ec;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- STEP 1: LOGIN -->
+    <div class="step active" id="step-1">
+      <span class="badge-step">Step 1 · Login</span>
+      <h1>Welcome, my birthday queen 👑</h1>
+      <p class="subtitle">Enter the secret code to enter your surprise world.</p>
+
+      <input id="username" type="text" placeholder="Username" />
+      <input id="password" type="password" placeholder="Password" />
+
+      <button class="btn-primary" onclick="handleLogin()">Login</button>
+      <p class="subtitle" style="margin-top:10px;font-size:0.8rem;">
+        (You can change the correct username/password in the code.)
+      </p>
+    </div>
+
+    <!-- STEP 2: HAPPY BIRTHDAY + CAKE PHOTO -->
+    <div class="step" id="step-2">
+      <span class="badge-step">Step 2</span>
+      <h2>Happy Birthday, My Love 🎂</h2>
+      <p class="subtitle">Today is all about you, your smile, and our memories.</p>
+
+      <!-- Replace src with your cake image URL -->
+      <img
+        class="cake-img"
+        src="D:\Baviiiiu\IMG_20241211_220459_567.jpg"
+        alt="Birthday Cake"
+      />
+
+      <div class="nav-buttons">
+        <button class="btn-secondary" onclick="prevStep()">⬅ Back</button>
+        <button class="btn-primary" onclick="nextStep()">Next ➜</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: OUR PHOTOS -->
+    <div class="step" id="step-3">
+      <span class="badge-step">Step 3</span>
+      <h2>Our Memories 📸</h2>
+      <p class="subtitle">Some of my favourite moments with you.</p>
+
+      <div class="photos-grid">
+        <!-- Replace these src with your couple photos -->
+        <img src="D:\Baviiiiu\IMG_20241211_221424_318.jpg" alt="Us 1" />
+        <img src="D:\Baviiiiu\IMG_20241211_221601_397.jpg" alt="Us 2" />
+        <img src="D:\Baviiiiu\IMG_20241211_225938_284.jpg" alt="Us 3" />
+        <img src="D:\Baviiiiu\IMG_20241211_230415_151.jpg" alt="Us 4" />
+        <img src="D:\Baviiiiu\IMG-20250227-WA0082.jpg" alt="Us 5" />
+        <img src="D:\Baviiiiu\IMG-20250228-WA0014.jpg" alt="Us 6" />
+        <img src="D:\Baviiiiu\20250306_100908.jpg" alt="Us 7" />
+        <img src="D:\Baviiiiu\New folder\1.jpg" alt = 9/>
+        <img src="D:\Baviiiiu\New folder\2.jpg" alt = 9/>
+        <img src="D:\Baviiiiu\New folder\20250401_131053.jpg" alt = 9/>
+        <img src="D:\Baviiiiu\New folder\20250406_135154.jpg" alt = 9/>
+        <img src="D:\Baviiiiu\New folder\20250709_160908.jpg" alt = 9/>
+        <img src="D:\Baviiiiu\New folder\20250725_131856.jpg" alt="Us 5" />
+        <img src="D:\Baviiiiu\New folder\20250727_233325.jpg" alt="Us 5" />
+        <img src="D:\Baviiiiu\New folder\20251017_130008.jpg" alt="Us 5" />
+        <img src="D:\Baviiiiu\New folder\20251017_190340.jpg" alt="Us 4" />
+        <img src="D:\Baviiiiu\New folder\20251126_144700.jpg" alt="Us 4" />
+        <img src="D:\Baviiiiu\IMG_20250402_015347_957.jpg" alt="Us 8" />
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-secondary" onclick="prevStep()">⬅ Back</button>
+        <button class="btn-primary" onclick="nextStep()">Next ➜</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: BLOW THE CANDLE -->
+    <div class="step" id="step-4">
+      <span class="badge-step">Step 4</span>
+      <h2>Make a Wish ✨</h2>
+      <p class="subtitle">Click on the flame to blow the candle.</p>
+
+      <div class="candle-container">
+        <div class="cake-base">
+          <div class="candle">
+            <div class="flame" id="flame" onclick="toggleFlame()"></div>
+          </div>
+        </div>
+        <p class="hint">💡 Tip: Click the fire to turn it off.</p>
+        <p class="message" id="candleMessage"></p>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-secondary" onclick="prevStep()">⬅ Back</button>
+        <button class="btn-primary" onclick="nextStep()">Next ➜</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: BIRTHDAY PARAGRAPH -->
+    <div class="step" id="step-5">
+      <span class="badge-step">Step 5</span>
+      <h2>A Letter From Me to You 💌</h2>
+      <p class="subtitle">Read this when you’re ready to feel extra loved.</p>
+
+      <div class="paragraph-box" id="birthdayParagraph">
+        <!-- 👉 Replace this with your own long birthday message -->
+        I still remember the first time I saw you at Foodys on April 30, 2022, and the day you proposed to me on June 12, 2022. Those moments will always be special to me.
+
+We fight a lot, sometimes even too much… but at the end of the day, we always fix it together. That’s what makes our love strong. I know our recent fights were very hard, and it even felt like we might break up… but don’t worry. I will change, I will overcome this. Just give me a little time.
+
+You’ve cried so many nights, thinking you weren’t enough because you didn’t get placed for so long. I saw that pain in you — the struggle, the tears, the pressure, the disappointment.
+But today… look at you.
+My ennaval got placed in Nokia.
+"Itha vida periya santhosham enna irukku?"
+I am very, very, VERY proud of you, chlm.
+But I’ll be honest — it hurts me more than you know that I wasn’t there beside you when you achieved it. I wanted to hold you, celebrate you, and tell you in person how proud I am of you.
+
+And now, like you always wished, my ennaval is an independent woman. Strong, bold, beautiful, unstoppable. I’m so, so proud of the woman you’ve become.
+
+Ever since you went to Bangalore, there’s been a gap in my life that nothing else can fill.
+Everyone is around me, but it still feels like no one is here… because you aren’t.
+I miss you every single day — more than I can explain.
+
+On your special day, I want you to remember one thing:
+No matter how many fights, tears, or distances come between us…
+I choose you. I will always choose you.
+
+Happy Birthday, Ennavaleyyyy,
+I miss you, I’m proud of you, and I love you more than anything in this world. ❤️✨
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-secondary" onclick="prevStep()">⬅ Back</button>
+        <button class="btn-primary" onclick="nextStep()">Next ➜</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: OUR VIDEO -->
+    <div class="step" id="step-6">
+      <span class="badge-step">Step 6</span>
+      <h2>Hit Play on Us 🎬</h2>
+      <p class="subtitle">A small video, but a big piece of my heart.</p>
+
+      <div class="video-wrapper">
+        <!-- 👉 Replace "your-video.mp4" with your real video file path -->
+        <video controls autoplay>
+          <source src="D:\Baviiiiu\New folder\lv_0_20251126224408.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn-secondary" onclick="prevStep()">⬅ Back</button>
+        <button class="btn-primary" onclick="goToFirst()">Back to Start 🔁</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+
+    function showStep(step) {
+      const totalSteps = 6;
+      if (step < 1 || step > totalSteps) return;
+
+      currentStep = step;
+      for (let i = 1; i <= totalSteps; i++) {
+        const el = document.getElementById("step-" + i);
+        if (el) el.classList.toggle("active", i === step);
+      }
+    }
+
+    function nextStep() {
+      showStep(currentStep + 1);
+    }
+
+    function prevStep() {
+      // Don’t go back from Login to a negative step
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    }
+
+    function goToFirst() {
+      showStep(1);
+    }
+
+    // Simple LOGIN – change these values as you like
+    const CORRECT_USERNAME = "123";
+    const CORRECT_PASSWORD = "123";
+
+    function handleLogin() {
+      const user = (document.getElementById("username").value || "").trim();
+      const pass = (document.getElementById("password").value || "").trim();
+
+      if (user === CORRECT_USERNAME && pass === CORRECT_PASSWORD) {
+        showStep(2);
+      } else {
+        alert("Oops! Wrong username or password 😝");
+      }
+    }
+
+    // Candle flame toggle
+    function toggleFlame() {
+      const flame = document.getElementById("flame");
+      const msg = document.getElementById("candleMessage");
+
+      if (!flame.classList.contains("off")) {
+        // Turn off the flame
+        flame.classList.add("off");
+        msg.textContent = "You blew out the candle! Make a wish in your heart. 💫";
+      } else {
+        // Turn flame back on (if you want to relight)
+        flame.classList.remove("off");
+        msg.textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>
